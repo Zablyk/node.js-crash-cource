@@ -11,3 +11,5 @@ const server = http.createServer((req, res) => {
 server.listen(1337, '127.0.0.1', () => {
     console.log('Listening for a request now');
 });
+
+console.log('lets try it');
