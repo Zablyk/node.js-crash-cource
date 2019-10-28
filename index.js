@@ -8,10 +8,21 @@ const laptopData = JSON.parse(json);
 const server = http.createServer((req, res) => {
 
     const pathName = url.parse(req.url, true).pathname;
+    const id = url.parse(req.url, true).query.id;
     
-    if (pathName === 'products') {
+    if (pathName === '/products' || pathName === '/') {
         res.writeHead(200, { 'Content-type': 'text/html'});
-        res.end('This is a response!');
+        res.end('This is a PRODUCT page');
+    }
+
+    else if (pathName === '/laptop' && id < laptopData.length) {
+        res.writeHead(200, { 'Content-type': 'text/html'});
+        res.end(`This is a LAPTOP page for laptop ${id}`);
+    }
+
+    else {
+        res.writeHead(404, { 'Content-type': 'text/html'});
+        res.end('URL was not found on a website!');
     }
     
 });
